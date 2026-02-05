@@ -1,0 +1,15 @@
+.head-container {
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding:10px;
+}
+.list-container {
+  display: flex;
+  flex-direction: row;
+}
+li {
+  list-style-type: none;
+  padding: 10px;
+}
