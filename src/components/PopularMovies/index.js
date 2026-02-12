@@ -20,8 +20,25 @@ class PopularMovies extends Component {
     this.setState({movies: data.results})
   }
 
+  nextPage = () => {
+    this.setState(
+      prevState => ({page: prevState.page + 1}),
+      this.getPopularDetails,
+    )
+  }
+
+  prevPage = () => {
+    const {page} = this.state
+    if (page > 1) {
+      this.setState(
+        prevState => ({page: prevState.page - 1}),
+        this.getPopularDetails,
+      )
+    }
+  }
+
   render() {
-    const {movies} = this.state
+    const {movies, page} = this.state
     return (
       <div>
         <h1>Popular</h1>
@@ -30,6 +47,17 @@ class PopularMovies extends Component {
             <MovieCard movie={movie} key={movie.id} />
           ))}
         </ul>
+        <div className="pagination">
+          <button type="button" onClick={this.prevPage} disabled={page === 1}>
+            Prev
+          </button>
+
+          <p>{page}</p>
+
+          <button type="button" onClick={this.nextPage}>
+            Next
+          </button>
+        </div>
       </div>
     )
   }
